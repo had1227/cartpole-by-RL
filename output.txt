@@ -1,0 +1,7 @@
+Script started on 2016년 07월 14일 (목) 오후 12시 07분 33초
+]0;cpslab@cpslab-H55M-S2V: ~/PycharmProjects/untitled1cpslab@cpslab-H55M-S2V:~/PycharmProjects/untitled1$ ls
+gym-test.py  output2.txt  output.txt  test.py
+]0;cpslab@cpslab-H55M-S2V: ~/PycharmProjects/untitled1cpslab@cpslab-H55M-S2V:~/PycharmProjects/untitled1$ l[Kexit
+exit
+
+Script done on 2016년 07월 14일 (목) 오후 12시 08분 10초
