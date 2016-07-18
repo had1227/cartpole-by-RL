@@ -4,7 +4,7 @@ import random
 env = gym.make('CartPole-v0')
 
 act_space=numpy.zeros((40,60,40,60,2))
-epsilon = 0.7
+epsilon = 0.8
 a=numpy.zeros(8)        # for debugging
 test_interval = 10000
 total_eps=1000000
@@ -92,8 +92,8 @@ for i_episode in range(total_eps+1):
         #print("Q value",act_space[state1[0]][state1[1]][state1[2]][state1[3]][action])
         if done:
             if(i_episode % test_interval == 0 ):
+                epsilon*=0.99
                 print "Test finished.",
-            if(i_episode % 10000 == 0):
                 print "Episode {} finished".format(i_episode),
                 print "after {} timesteps".format(t+1)
             if (i_episode % test_interval == 0 and t > 200):
