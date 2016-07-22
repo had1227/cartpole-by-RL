@@ -1,7 +1,5 @@
-a=[1.1, 2.2, 3.3]
+import random
 
-b=[a[x] for x in range(3)]
+a=[]
 
-b.append(1)
-
-print(b)
+print(a)

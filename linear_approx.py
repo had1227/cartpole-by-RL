@@ -5,9 +5,11 @@ env = gym.make('CartPole-v0')
 
 weight = [-0.5 + random.random() for x in range(4)]
 epsilon = 0.7
-test_interval = 10000
+test_interval = 1000
 total_eps=100000
-
+aa=0
+b=0
+wow=False
 #env.monitor.start('/tmp/cartpole_experiment1',video_callable=lambda i_episode: i_episode % test_interval == 0, force=True)
 
 def func(observation, action):
@@ -71,11 +73,16 @@ for i_episode in range(total_eps+1):
                 print "Test finished.",
                 print "Episode {} finished".format(i_episode),
                 print "after {} timesteps".format(t+1)
-                print sample,diff,Q_prediction, epsilon
-                print weight
+
+                if(wow):
+                    aa+=t+1
+                    b+=1
                 #print weight
-            if (i_episode % test_interval == 0 and t > 200):
+            if (i_episode % test_interval == 0 and t > 400):
+                epsilon=0.1
                 print "Well Done!"
+                wow=True
             break
 
 #env.monitor.close()
+print(float(aa)/float(b))
