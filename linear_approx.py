@@ -3,7 +3,8 @@ import numpy
 import random
 env = gym.make('CartPole-v0')
 
-weight = [-0.5 + random.random() for x in range(4)]
+gamma = 0.9;
+weight = [-0.5 + random.random() for x in range(2)]
 epsilon = 0.7
 test_interval = 1000
 total_eps=100000
@@ -14,9 +15,9 @@ wow=False
 
 def func(observation, action):
     if(action==0):
-        f_list=[observation[x] for x in range(4)]       # f=[observation] if action==0
+        f_list=[observation[x] for x in range(3)]       # f=[observation] if action==0
     else:
-        f_list=[-observation[x] for x in range(4)]       # f=[-observation] if action==1
+        f_list=[-observation[x] for x in range(3)]       # f=[-observation] if action==1
     #f_list.append(0.001)
 
     return f_list
@@ -29,16 +30,16 @@ def Q_val(observation, action): # q = W * F
     return q
 
 def weight_update(diff, prev_observation, action):
-    alpha = 0.1
+    alpha = 0.9
     f = func(prev_observation, action)
 
     for x in range(4):
-        weight[x] += alpha * diff * f[x]
+        weight[x] += alpha * ( diff * f[x] )
 
 for i_episode in range(total_eps+1):
     observation = env.reset()
 
-    for t in range(1000):
+    for t in range(500):
         #print(observation)
         #env.render()
 
@@ -62,7 +63,7 @@ for i_episode in range(total_eps+1):
 
         observation, reward, done, info = env.step(action)  # s->a->s'
 
-        sample = reward + max(Q_val(observation,0),Q_val(observation,1))    # observation of state s' is used
+        sample = reward + gamma*max(Q_val(observation,0),Q_val(observation,1))    # observation of state s' is used
 
         diff = sample - Q_prediction
 
